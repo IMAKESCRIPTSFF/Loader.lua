@@ -1,121 +1,337 @@
--- SWS HUB MAIN LOADER | BLACK + NEON WHITE LIGHTNING
+
 local Players=game:GetService("Players")
 local CoreGui=game:GetService("CoreGui")
 local TweenService=game:GetService("TweenService")
 local UIS=game:GetService("UserInputService")
+
 local Scripts={
- {Name="Spin To Upgrade",URL="https://raw.githubusercontent.com/IMAKESCRIPTSFF/SpinToUpgrade/refs/heads/main/.lua",PlaceId=101054234503030},
- {Name="Roll A Barber RNG",URL="https://raw.githubusercontent.com/IMAKESCRIPTSFF/RollABarber/refs/heads/main/RAB.obf.lua",PlaceId=87029994390208},
- {Name="ESP-Hitbox",URL="https://raw.githubusercontent.com/IMAKESCRIPTSFF/ESP-Hitbox/refs/heads/main/.lua",Universal=true}
+    {Name="Spin To Upgrade",URL="https://raw.githubusercontent.com/IMAKESCRIPTSFF/SpinToUpgrade/refs/heads/main/.lua",PlaceId=101054234503030},
+    {Name="Roll A Barber RNG",URL="https://raw.githubusercontent.com/IMAKESCRIPTSFF/RollABarber/refs/heads/main/RAB.obf.lua",PlaceId=87029994390208},
+    {Name="ESP-Hitbox",URL="https://raw.githubusercontent.com/IMAKESCRIPTSFF/ESP-Hitbox/refs/heads/main/.lua",Universal=true}
 }
+
 local parent=(gethui and gethui()) or CoreGui
 local oldGui=parent:FindFirstChild("SWS_HUB")
 if oldGui then oldGui:Destroy() end
+
 local gui=Instance.new("ScreenGui")
-gui.Name="SWS_HUB" gui.ResetOnSpawn=false gui.Parent=parent
+gui.Name="SWS_HUB"
+gui.ResetOnSpawn=false
+gui.Parent=parent
+
 local main=Instance.new("Frame")
-main.Size=UDim2.fromOffset(440,390) main.Position=UDim2.new(.5,-220,.5,-195)
-main.BackgroundColor3=Color3.fromRGB(7,8,12) main.BorderSizePixel=0 main.ClipsDescendants=true main.Parent=gui
+main.Size=UDim2.fromOffset(440,402)
+main.Position=UDim2.new(.5,-220,.5,-201)
+main.BackgroundColor3=Color3.fromRGB(7,8,12)
+main.BorderSizePixel=0
+main.ClipsDescendants=true
+main.Parent=gui
 Instance.new("UICorner",main).CornerRadius=UDim.new(0,12)
+
 local outline=Instance.new("UIStroke",main)
-outline.Color=Color3.fromRGB(235,245,255) outline.Thickness=1.6 outline.Transparency=.12
-TweenService:Create(outline,TweenInfo.new(1.3,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut,-1,true),{Transparency=.58,Thickness=2.2}):Play()
+outline.Color=Color3.fromRGB(235,245,255)
+outline.Thickness=1.6
+outline.Transparency=.12
+
+TweenService:Create(outline,TweenInfo.new(1.3,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut,-1,true),{
+    Transparency=.58,
+    Thickness=2.2
+}):Play()
+
 local top=Instance.new("Frame",main)
-top.Size=UDim2.new(1,0,0,46) top.BackgroundColor3=Color3.fromRGB(15,17,24) top.BorderSizePixel=0
+top.Size=UDim2.new(1,0,0,46)
+top.BackgroundColor3=Color3.fromRGB(15,17,24)
+top.BorderSizePixel=0
 Instance.new("UICorner",top).CornerRadius=UDim.new(0,12)
+
 local cover=Instance.new("Frame",top)
-cover.Size=UDim2.new(1,0,0,12) cover.Position=UDim2.new(0,0,1,-12) cover.BackgroundColor3=top.BackgroundColor3 cover.BorderSizePixel=0
+cover.Size=UDim2.new(1,0,0,12)
+cover.Position=UDim2.new(0,0,1,-12)
+cover.BackgroundColor3=top.BackgroundColor3
+cover.BorderSizePixel=0
+
 local title=Instance.new("TextLabel",top)
-title.Size=UDim2.new(1,-115,1,0) title.Position=UDim2.fromOffset(14,0) title.BackgroundTransparency=1
-title.Text="⚡ SWS HUB" title.TextColor3=Color3.fromRGB(248,250,255) title.TextSize=19 title.Font=Enum.Font.GothamBold title.TextXAlignment=Enum.TextXAlignment.Left
+title.Size=UDim2.new(1,-115,1,0)
+title.Position=UDim2.fromOffset(14,0)
+title.BackgroundTransparency=1
+title.Text="⚡ SWS HUB"
+title.TextColor3=Color3.fromRGB(248,250,255)
+title.TextSize=19
+title.Font=Enum.Font.GothamBold
+title.TextXAlignment=Enum.TextXAlignment.Left
+
 local function button(parentObj,text,size,pos,bg)
- local b=Instance.new("TextButton") b.Size=size b.Position=pos b.Text=text b.TextSize=16 b.Font=Enum.Font.GothamBold
- b.TextColor3=Color3.fromRGB(250,252,255) b.BackgroundColor3=bg b.BorderSizePixel=0 b.Parent=parentObj
- Instance.new("UICorner",b).CornerRadius=UDim.new(0,6)
- local st=Instance.new("UIStroke",b) st.Color=Color3.fromRGB(225,238,255) st.Transparency=.4
- return b
+    local b=Instance.new("TextButton")
+    b.Size=size
+    b.Position=pos
+    b.Text=text
+    b.TextSize=16
+    b.Font=Enum.Font.GothamBold
+    b.TextColor3=Color3.fromRGB(250,252,255)
+    b.BackgroundColor3=bg
+    b.BorderSizePixel=0
+    b.Parent=parentObj
+    Instance.new("UICorner",b).CornerRadius=UDim.new(0,6)
+
+    local st=Instance.new("UIStroke",b)
+    st.Color=Color3.fromRGB(225,238,255)
+    st.Transparency=.4
+
+    return b
 end
+
 local mini=button(top,"−",UDim2.fromOffset(34,30),UDim2.new(1,-78,0,8),Color3.fromRGB(29,32,42))
 local close=button(top,"×",UDim2.fromOffset(34,30),UDim2.new(1,-39,0,8),Color3.fromRGB(48,28,34))
+
 local electric=Instance.new("Frame",main)
-electric.Size=UDim2.new(.3,0,0,2) electric.Position=UDim2.new(-.3,0,0,45) electric.BackgroundColor3=Color3.new(1,1,1) electric.BorderSizePixel=0
-task.spawn(function() while gui.Parent do
- electric.Position=UDim2.new(-.3,0,0,45)
- local t=TweenService:Create(electric,TweenInfo.new(1.6,Enum.EasingStyle.Linear),{Position=UDim2.new(1,0,0,45)})
- t:Play() t.Completed:Wait() task.wait(.2)
-end end)
+electric.Size=UDim2.new(.3,0,0,2)
+electric.Position=UDim2.new(-.3,0,0,45)
+electric.BackgroundColor3=Color3.new(1,1,1)
+electric.BorderSizePixel=0
+
+task.spawn(function()
+    while gui.Parent do
+        electric.Position=UDim2.new(-.3,0,0,45)
+        local t=TweenService:Create(electric,TweenInfo.new(1.6,Enum.EasingStyle.Linear),{
+            Position=UDim2.new(1,0,0,45)
+        })
+        t:Play()
+        t.Completed:Wait()
+        task.wait(.2)
+    end
+end)
+
 local status=Instance.new("TextLabel",main)
-status.Size=UDim2.new(1,-24,0,22) status.Position=UDim2.fromOffset(12,53) status.BackgroundTransparency=1
-status.Text="Select a script to load" status.TextColor3=Color3.fromRGB(185,195,215) status.TextSize=12 status.Font=Enum.Font.Gotham status.TextXAlignment=Enum.TextXAlignment.Left
+status.Size=UDim2.new(1,-24,0,34)
+status.Position=UDim2.fromOffset(12,52)
+status.BackgroundTransparency=1
+status.Text="Select a script to load"
+status.TextColor3=Color3.fromRGB(185,195,215)
+status.TextSize=11
+status.Font=Enum.Font.Gotham
+status.TextXAlignment=Enum.TextXAlignment.Left
+status.TextYAlignment=Enum.TextYAlignment.Center
+status.TextWrapped=true
+
 local search=Instance.new("TextBox",main)
-search.Size=UDim2.new(1,-24,0,34) search.Position=UDim2.fromOffset(12,79) search.BackgroundColor3=Color3.fromRGB(17,20,28)
-search.BorderSizePixel=0 search.PlaceholderText="Search scripts..." search.PlaceholderColor3=Color3.fromRGB(115,125,145)
-search.Text="" search.TextColor3=Color3.fromRGB(245,248,255) search.TextSize=13 search.Font=Enum.Font.Gotham search.ClearTextOnFocus=false
+search.Size=UDim2.new(1,-24,0,34)
+search.Position=UDim2.fromOffset(12,91)
+search.BackgroundColor3=Color3.fromRGB(17,20,28)
+search.BorderSizePixel=0
+search.PlaceholderText="Search scripts..."
+search.PlaceholderColor3=Color3.fromRGB(115,125,145)
+search.Text=""
+search.TextColor3=Color3.fromRGB(245,248,255)
+search.TextSize=13
+search.Font=Enum.Font.Gotham
+search.ClearTextOnFocus=false
+
 Instance.new("UICorner",search).CornerRadius=UDim.new(0,7)
-local searchStroke=Instance.new("UIStroke",search) searchStroke.Color=Color3.fromRGB(160,180,210) searchStroke.Transparency=.55
-search.Focused:Connect(function() TweenService:Create(searchStroke,TweenInfo.new(.18),{Transparency=.08}):Play() end)
-search.FocusLost:Connect(function() TweenService:Create(searchStroke,TweenInfo.new(.18),{Transparency=.55}):Play() end)
+
+local searchStroke=Instance.new("UIStroke",search)
+searchStroke.Color=Color3.fromRGB(160,180,210)
+searchStroke.Transparency=.55
+
+search.Focused:Connect(function()
+    TweenService:Create(searchStroke,TweenInfo.new(.18),{Transparency=.08}):Play()
+end)
+
+search.FocusLost:Connect(function()
+    TweenService:Create(searchStroke,TweenInfo.new(.18),{Transparency=.55}):Play()
+end)
+
 local list=Instance.new("ScrollingFrame",main)
-list.Size=UDim2.new(1,-24,1,-151) list.Position=UDim2.fromOffset(12,121) list.BackgroundColor3=Color3.fromRGB(11,13,19)
-list.BorderSizePixel=0 list.ScrollBarThickness=3 list.ScrollBarImageColor3=Color3.fromRGB(215,230,255)
+list.Size=UDim2.new(1,-24,1,-163)
+list.Position=UDim2.fromOffset(12,133)
+list.BackgroundColor3=Color3.fromRGB(11,13,19)
+list.BorderSizePixel=0
+list.ScrollBarThickness=3
+list.ScrollBarImageColor3=Color3.fromRGB(215,230,255)
+
 Instance.new("UICorner",list).CornerRadius=UDim.new(0,8)
-local layout=Instance.new("UIListLayout",list) layout.Padding=UDim.new(0,8) layout.SortOrder=Enum.SortOrder.LayoutOrder
-local pad=Instance.new("UIPadding",list) pad.PaddingTop=UDim.new(0,8) pad.PaddingLeft=UDim.new(0,7) pad.PaddingRight=UDim.new(0,7)
-layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() list.CanvasSize=UDim2.new(0,0,0,layout.AbsoluteContentSize.Y+16) end)
-local loaded={} local cards={}
+
+local layout=Instance.new("UIListLayout",list)
+layout.Padding=UDim.new(0,8)
+layout.SortOrder=Enum.SortOrder.LayoutOrder
+
+local pad=Instance.new("UIPadding",list)
+pad.PaddingTop=UDim.new(0,8)
+pad.PaddingLeft=UDim.new(0,7)
+pad.PaddingRight=UDim.new(0,7)
+
+layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+    list.CanvasSize=UDim2.new(0,0,0,layout.AbsoluteContentSize.Y+16)
+end)
+
+local loaded={}
+local cards={}
+
 local function loadScript(data,b)
- if loaded[data.Name] then status.Text="Already loaded: "..data.Name return end
- if not data.Universal and game.PlaceId~=data.PlaceId then status.Text="WRONG GAME: "..data.Name return end
- status.Text="Loading: "..data.Name b.Text="LOADING..."
- task.spawn(function()
-  local ok,src=pcall(function() return game:HttpGet(data.URL) end)
-  if not ok or type(src)~="string" or src=="" then status.Text="Download failed" b.Text="LOAD" return end
-  if not loadstring then status.Text="loadstring unavailable" b.Text="LOAD" return end
-  local compiledOk,fn=pcall(loadstring,src)
-  if not compiledOk or type(fn)~="function" then status.Text="Compilation failed" b.Text="LOAD" return end
-  local runOk,err=pcall(fn)
-  if runOk then loaded[data.Name]=true status.Text="Loaded: "..data.Name b.Text="LOADED"
-  else status.Text="Execution error: "..tostring(err) b.Text="LOAD" end
- end)
+    if loaded[data.Name] then
+        status.Text="Already loaded: "..data.Name
+        return
+    end
+
+    if not data.Universal and game.PlaceId~=data.PlaceId then
+        status.Text="WRONG GAME: "..data.Name
+        return
+    end
+
+    status.Text="Loading: "..data.Name
+    b.Text="LOADING..."
+
+    task.spawn(function()
+        local ok,src=pcall(function()
+            return game:HttpGet(data.URL)
+        end)
+
+        if not ok or type(src)~="string" or src=="" then
+            status.Text="Download failed: "..tostring(src)
+            b.Text="LOAD"
+            return
+        end
+
+        local compiler=loadstring
+
+        if type(compiler)~="function" then
+            status.Text="loadstring unavailable"
+            b.Text="LOAD"
+            return
+        end
+
+        local compileOk,fn,compileErr=pcall(function()
+            return compiler(src)
+        end)
+
+        if not compileOk then
+            status.Text="Compiler error: "..tostring(fn)
+            b.Text="LOAD"
+            return
+        end
+
+        if type(fn)~="function" then
+            status.Text="Compilation failed: "..tostring(compileErr)
+            b.Text="LOAD"
+            return
+        end
+
+        local runOk,err=pcall(fn)
+
+        if runOk then
+            loaded[data.Name]=true
+            status.Text="Loaded: "..data.Name
+            b.Text="LOADED"
+        else
+            status.Text="Execution error: "..tostring(err)
+            b.Text="LOAD"
+        end
+    end)
 end
+
 for i,data in ipairs(Scripts) do
- local card=Instance.new("Frame",list)
- card.Name="Card_"..data.Name card.Size=UDim2.new(1,-4,0,66) card.BackgroundColor3=Color3.fromRGB(20,23,31) card.BorderSizePixel=0 card.LayoutOrder=i
- Instance.new("UICorner",card).CornerRadius=UDim.new(0,8)
- local cs=Instance.new("UIStroke",card) cs.Color=Color3.fromRGB(145,165,195) cs.Transparency=.72
- local name=Instance.new("TextLabel",card)
- name.Size=UDim2.new(.62,0,0,25) name.Position=UDim2.fromOffset(11,7) name.BackgroundTransparency=1 name.Text=data.Name
- name.TextColor3=Color3.fromRGB(250,252,255) name.TextSize=14 name.Font=Enum.Font.GothamBold name.TextXAlignment=Enum.TextXAlignment.Left
- local kind=Instance.new("TextLabel",card)
- kind.Size=UDim2.new(.62,0,0,18) kind.Position=UDim2.fromOffset(11,34) kind.BackgroundTransparency=1
- kind.Text=data.Universal and "UNIVERSAL" or ("GAME ID: "..data.PlaceId) kind.TextColor3=Color3.fromRGB(155,170,195) kind.TextSize=10 kind.Font=Enum.Font.Gotham
- kind.TextXAlignment=Enum.TextXAlignment.Left
- local load=button(card,"LOAD",UDim2.fromOffset(104,35),UDim2.new(1,-115,.5,-17),Color3.fromRGB(235,244,255))
- load.TextColor3=Color3.fromRGB(10,13,19) load.TextSize=12
- load.MouseEnter:Connect(function() TweenService:Create(cs,TweenInfo.new(.14),{Transparency=.2}):Play() end)
- load.MouseLeave:Connect(function() TweenService:Create(cs,TweenInfo.new(.14),{Transparency=.72}):Play() end)
- load.MouseButton1Click:Connect(function() loadScript(data,load) end)
- cards[#cards+1]={Frame=card,Data=data}
+    local card=Instance.new("Frame",list)
+    card.Name="Card_"..data.Name
+    card.Size=UDim2.new(1,-4,0,66)
+    card.BackgroundColor3=Color3.fromRGB(20,23,31)
+    card.BorderSizePixel=0
+    card.LayoutOrder=i
+
+    Instance.new("UICorner",card).CornerRadius=UDim.new(0,8)
+
+    local cs=Instance.new("UIStroke",card)
+    cs.Color=Color3.fromRGB(145,165,195)
+    cs.Transparency=.72
+
+    local name=Instance.new("TextLabel",card)
+    name.Size=UDim2.new(.62,0,0,25)
+    name.Position=UDim2.fromOffset(11,7)
+    name.BackgroundTransparency=1
+    name.Text=data.Name
+    name.TextColor3=Color3.fromRGB(250,252,255)
+    name.TextSize=14
+    name.Font=Enum.Font.GothamBold
+    name.TextXAlignment=Enum.TextXAlignment.Left
+
+    local kind=Instance.new("TextLabel",card)
+    kind.Size=UDim2.new(.62,0,0,18)
+    kind.Position=UDim2.fromOffset(11,34)
+    kind.BackgroundTransparency=1
+    kind.Text=data.Universal and "UNIVERSAL" or ("GAME ID: "..data.PlaceId)
+    kind.TextColor3=Color3.fromRGB(155,170,195)
+    kind.TextSize=10
+    kind.Font=Enum.Font.Gotham
+    kind.TextXAlignment=Enum.TextXAlignment.Left
+
+    local load=button(card,"LOAD",UDim2.fromOffset(104,35),UDim2.new(1,-115,.5,-17),Color3.fromRGB(235,244,255))
+    load.TextColor3=Color3.fromRGB(10,13,19)
+    load.TextSize=12
+
+    load.MouseEnter:Connect(function()
+        TweenService:Create(cs,TweenInfo.new(.14),{Transparency=.2}):Play()
+    end)
+
+    load.MouseLeave:Connect(function()
+        TweenService:Create(cs,TweenInfo.new(.14),{Transparency=.72}):Play()
+    end)
+
+    load.MouseButton1Click:Connect(function()
+        loadScript(data,load)
+    end)
+
+    cards[#cards+1]={Frame=card,Data=data}
 end
+
 search:GetPropertyChangedSignal("Text"):Connect(function()
- local q=string.lower(search.Text)
- for _,item in ipairs(cards) do item.Frame.Visible=q=="" or string.find(string.lower(item.Data.Name),q,1,true)~=nil end
+    local q=string.lower(search.Text)
+
+    for _,item in ipairs(cards) do
+        item.Frame.Visible=q=="" or string.find(string.lower(item.Data.Name),q,1,true)~=nil
+    end
 end)
+
 local minimized=false
+
 mini.MouseButton1Click:Connect(function()
- minimized=not minimized search.Visible=not minimized list.Visible=not minimized status.Visible=not minimized
- TweenService:Create(main,TweenInfo.new(.22,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Size=minimized and UDim2.fromOffset(440,46) or UDim2.fromOffset(440,390)}):Play()
- mini.Text=minimized and "+" or "−"
+    minimized=not minimized
+
+    search.Visible=not minimized
+    list.Visible=not minimized
+    status.Visible=not minimized
+
+    TweenService:Create(main,TweenInfo.new(.22,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{
+        Size=minimized and UDim2.fromOffset(440,46) or UDim2.fromOffset(440,402)
+    }):Play()
+
+    mini.Text=minimized and "+" or "−"
 end)
-close.MouseButton1Click:Connect(function() gui:Destroy() end)
-local dragging=false local dragStart local startPos
+
+close.MouseButton1Click:Connect(function()
+    gui:Destroy()
+end)
+
+local dragging=false
+local dragStart
+local startPos
+
 top.InputBegan:Connect(function(input)
- if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then dragging=true dragStart=input.Position startPos=main.Position end
+    if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then
+        dragging=true
+        dragStart=input.Position
+        startPos=main.Position
+    end
 end)
+
 UIS.InputChanged:Connect(function(input)
- if dragging and (input.UserInputType==Enum.UserInputType.MouseMovement or input.UserInputType==Enum.UserInputType.Touch) then
-  local d=input.Position-dragStart main.Position=UDim2.new(startPos.X.Scale,startPos.X.Offset+d.X,startPos.Y.Scale,startPos.Y.Offset+d.Y)
- end
+    if dragging and (input.UserInputType==Enum.UserInputType.MouseMovement or input.UserInputType==Enum.UserInputType.Touch) then
+        local d=input.Position-dragStart
+        main.Position=UDim2.new(startPos.X.Scale,startPos.X.Offset+d.X,startPos.Y.Scale,startPos.Y.Offset+d.Y)
+    end
 end)
-UIS.InputEnded:Connect(function(input) if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then dragging=false end end)
+
+UIS.InputEnded:Connect(function(input)
+    if input.UserInputType==Enum.UserInputType.MouseButton1 or input.UserInputType==Enum.UserInputType.Touch then
+        dragging=false
+    end
+end)
+
 status.Text="SWS HUB ready | "..#Scripts.." scripts"
